@@ -1,0 +1,245 @@
+[
+  {
+    "question": "Which employees are assigned to the Marketing client?",
+    "original_sql": "SELECT \"t1\".\"full_name\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"client\") IN ('marketing')))",
+    "pydantic_agent": "SELECT \"t1\".\"full_name\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"client\") IN ('marketing')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(client) = LOWER('Marketing') \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Who are all the employees in the Engineering department?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"department\") IN ('engineering')))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"department\") IN ('engineering')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(department) = LOWER('Engineering') \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Which employees are based in remote locations?",
+    "original_sql": "SELECT \"t1\".\"full_name\", \"t1\".\"location\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"location\") IN ('remote')))",
+    "pydantic_agent": "SELECT \"t1\".\"full_name\", \"t1\".\"location\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"location\") IN ('remote')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(location) = LOWER('remote') \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "How many managers do we have in our company?",
+    "original_sql": "SELECT \"t1\".\"is_manager\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (\"t1\".\"is_manager\" = 1)) GROUP BY \"t1\".\"is_manager\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "pydantic_agent": "SELECT \"t1\".\"is_manager\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (\"t1\".\"is_manager\" = 1)) GROUP BY \"t1\".\"is_manager\" ORDER BY COUNT(DISTINCT \"t1\".\"id\")",
+    "sql_agent": "SELECT COUNT(*) as manager_count FROM employees WHERE is_manager = true AND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Who are the active employees in the Sales department?",
+    "original_sql": "SELECT \"t1\".\"full_name\", \"t1\".\"is_active\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"department\") IN ('sales')))",
+    "pydantic_agent": "SELECT \"t1\".\"full_name\", \"t1\".\"is_active\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"department\") IN ('sales')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(department) = LOWER('Sales') \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Which employees are located in New York?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"location\") IN ('new york')))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"location\") IN ('new york')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(location) = LOWER('New York') \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "List all employees who are managers in the Finance department.",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE ((\"t1\".\"is_active\" AND (\"t1\".\"is_manager\" = 1)) AND (LOWER(\"t1\".\"department\") IN ('finance')))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE ((\"t1\".\"is_active\" AND (\"t1\".\"is_manager\" = 1)) AND (LOWER(\"t1\".\"department\") IN ('finance')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(department) = LOWER('Finance') \nAND is_manager = true \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Who has their birthday coming up in the next month?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-03-01') AND (date(\"t1\".\"start_date\") <= '2025-03-31')) OR ((date(\"t1\".\"end_date\") >= '2025-03-01') AND (date(\"t1\".\"end_date\") <= '2025-03-31'))) OR ((date(\"t1\".\"start_date\") <= '2025-03-01') AND (date(\"t1\".\"end_date\") >= '2025-03-31')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%birthday%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-03-01') AND (date(\"t1\".\"start_date\") <= '2025-03-31')) OR ((date(\"t1\".\"end_date\") >= '2025-03-01') AND (date(\"t1\".\"end_date\") <= '2025-03-31'))) OR ((date(\"t1\".\"start_date\") <= '2025-03-01') AND (date(\"t1\".\"end_date\") >= '2025-03-31')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%birthday%'))",
+    "sql_agent": "SELECT full_name, birth_date \nFROM employees \nWHERE is_active = true \nAND ((strftime('%m', birth_date) = strftime('%m', date('now', '+1 month')) AND strftime('%d', birth_date) >= strftime('%d', 'now')) \nOR (strftime('%m', birth_date) = strftime('%m', date('now', '+1 month'), '+1 month') AND strftime('%d', birth_date) <= strftime('%d', 'now')))\nORDER BY birth_date;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "How many employees are assigned to each client?",
+    "original_sql": "SELECT \"t1\".\"client\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE \"t1\".\"is_active\" GROUP BY \"t1\".\"client\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "pydantic_agent": "SELECT \"t1\".\"client\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE \"t1\".\"is_active\" GROUP BY \"t1\".\"client\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "sql_agent": "SELECT client, COUNT(*) as employee_count \nFROM employees \nWHERE is_active = true \nGROUP BY client \nORDER BY employee_count DESC;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "Which employees have birthdays between April and June?",
+    "original_sql": "SELECT \"t1\".\"full_name\", \"t1\".\"birth_date\" FROM \"employees\" AS \"t1\" WHERE ((\"t1\".\"is_active\" AND ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') > 4) OR ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') = 4) AND (CAST(strftime('%d', \"t1\".\"birth_date\"), 'INTEGER') >= 1)))) AND ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') < 6) OR ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') = 6) AND (CAST(strftime('%d', \"t1\".\"birth_date\"), 'INTEGER') <= 30))))",
+    "pydantic_agent": "SELECT \"t1\".\"full_name\", \"t1\".\"birth_date\" FROM \"employees\" AS \"t1\" WHERE ((\"t1\".\"is_active\" AND ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') > 4) OR ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') = 4) AND (CAST(strftime('%d', \"t1\".\"birth_date\"), 'INTEGER') >= 1)))) AND ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') < 6) OR ((CAST(strftime('%m', \"t1\".\"birth_date\"), 'INTEGER') = 6) AND (CAST(strftime('%d', \"t1\".\"birth_date\"), 'INTEGER') <= 30))))",
+    "sql_agent": "SELECT * FROM employees \nWHERE (strftime('%m', birth_date) = '04' OR strftime('%m', birth_date) = '05' OR strftime('%m', birth_date) = '06') \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "Who are our employees in the London office?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"location\") IN ('london')))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"location\") IN ('london')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(location) = LOWER('London') \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "How many employees do we have per location?",
+    "original_sql": "SELECT \"t1\".\"location\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE \"t1\".\"is_active\" GROUP BY \"t1\".\"location\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "pydantic_agent": "SELECT \"t1\".\"location\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE \"t1\".\"is_active\" GROUP BY \"t1\".\"location\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "sql_agent": "SELECT location, COUNT(*) as employee_count \nFROM employees \nWHERE is_active = true \nGROUP BY location \nORDER BY employee_count DESC;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "List all employees who work for the Apollo client.",
+    "original_sql": "SELECT \"t1\".\"full_name\", \"t1\".\"department\", \"t1\".\"location\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"client\") IN ('apollo')))",
+    "pydantic_agent": "SELECT \"t1\".\"full_name\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE (\"t1\".\"is_active\" AND (LOWER(\"t1\".\"client\") IN ('apollo')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(client) = LOWER('Apollo') \nAND is_active = true;",
+    "pydantic_agent_correct": false,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Who has a birthday next week?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-03-06') AND (date(\"t1\".\"start_date\") <= '2025-03-12')) OR ((date(\"t1\".\"end_date\") >= '2025-03-06') AND (date(\"t1\".\"end_date\") <= '2025-03-12'))) OR ((date(\"t1\".\"start_date\") <= '2025-03-06') AND (date(\"t1\".\"end_date\") >= '2025-03-12')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%birthday%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-03-06') AND (date(\"t1\".\"start_date\") <= '2025-03-12')) OR ((date(\"t1\".\"end_date\") >= '2025-03-06') AND (date(\"t1\".\"end_date\") <= '2025-03-12'))) OR ((date(\"t1\".\"start_date\") <= '2025-03-06') AND (date(\"t1\".\"end_date\") >= '2025-03-12')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%birthday%'))",
+    "sql_agent": "SELECT full_name, birth_date \nFROM employees \nWHERE is_active = true \nAND ((strftime('%m', birth_date) = strftime('%m', date('now', '+7 days')) \nAND strftime('%d', birth_date) >= strftime('%d', date('now')) \nAND strftime('%d', birth_date) <= strftime('%d', date('now', '+7 days'))) \nOR (strftime('%m', birth_date) = strftime('%m', date('now', '+1 month')) \nAND strftime('%d', birth_date) <= strftime('%d', date('now', '+7 days')))) \nORDER BY birth_date;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "How many employees do we have in each department?",
+    "original_sql": "SELECT \"t1\".\"department\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE \"t1\".\"is_active\" GROUP BY \"t1\".\"department\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "pydantic_agent": "SELECT \"t1\".\"department\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"employees\" AS \"t1\" WHERE \"t1\".\"is_active\" GROUP BY \"t1\".\"department\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "sql_agent": "SELECT LOWER(department) AS department, COUNT(*) AS employee_count \nFROM employees \nWHERE is_active = true \nGROUP BY LOWER(department) \nORDER BY employee_count DESC;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Which employees report to managers in the Operations department?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"full_name\", \"t1\".\"department\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\" FROM \"employees\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"reports_to_id\" = \"t2\".\"id\") WHERE ((\"t1\".\"is_active\" = 1) AND (\"t2\".\"is_manager\" = 1) AND (LOWER(\"t2\".\"department\") IN ('operations')))",
+    "pydantic_agent": "SELECT \"t1\".\"full_name\", \"t1\".\"reports_to_id\" FROM \"employees\" AS \"t1\" WHERE ((\"t1\".\"is_active\" AND (\"t1\".\"is_manager\" = 1)) AND (LOWER(\"t1\".\"department\") IN ('operations')))",
+    "sql_agent": "Here is the SQL query to find employees who report to managers in the Operations department:\n\n```sql\nSELECT e.full_name, m.full_name AS manager_name \nFROM employees e \nJOIN employees m ON e.reports_to = m.id \nWHERE LOWER(m.department) = LOWER('Operations') \nAND e.is_active = true;\n```\n\nThis query retrieves the names of employees along with their respective managers' names, filtering for those managers who are in the Operations department and ensuring that the employees are active. \n\nIf you need the results of this query executed, please let me know!",
+    "pydantic_agent_correct": false,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "Who is currently out of the office?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE (((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%all types%')) AND (\"t1\".\"status\" = 'approved'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE (((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%all types%')) AND (\"t1\".\"status\" = 'approved'))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t \nJOIN employees e ON t.employee_id = e.id \nWHERE t.status = 'approved' \nAND t.start_date <= date('now') \nAND t.end_date >= date('now') \nAND e.is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "List all employees in the HR department who are also managers.",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE ((\"t1\".\"is_active\" AND (\"t1\".\"is_manager\" = 1)) AND (LOWER(\"t1\".\"department\") IN ('hr')))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" WHERE ((\"t1\".\"is_active\" AND (\"t1\".\"is_manager\" = 1)) AND (LOWER(\"t1\".\"department\") IN ('hr')))",
+    "sql_agent": "SELECT * FROM employees \nWHERE LOWER(department) = LOWER('HR') \nAND is_manager = true \nAND is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  },
+  {
+    "question": "Which employees are on vacation this week?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-03-05')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-03-05'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-03-05')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%vacation%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-03-05')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-03-05'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-03-05')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%vacation%'))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t\nJOIN employees e ON t.employee_id = e.id\nWHERE t.status = 'approved' \nAND e.is_active = true \nAND t.start_date <= date('now', '+7 days') \nAND t.end_date >= date('now');",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "List all employees who are on sick leave today.",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%sick%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%sick%'))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t\nJOIN employees e ON t.employee_id = e.id\nWHERE LOWER(t.policy_type) = LOWER('sick leave')\nAND t.status = 'approved'\nAND e.is_active = true\nAND t.start_date <= date('now')\nAND t.end_date >= date('now');",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "Who has scheduled time off for next month?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE (((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-03-01') AND (date(\"t1\".\"start_date\") <= '2025-03-31')) OR ((date(\"t1\".\"end_date\") >= '2025-03-01') AND (date(\"t1\".\"end_date\") <= '2025-03-31'))) OR ((date(\"t1\".\"start_date\") <= '2025-03-01') AND (date(\"t1\".\"end_date\") >= '2025-03-31'))))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE (((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-03-01') AND (date(\"t1\".\"start_date\") <= '2025-03-31')) OR ((date(\"t1\".\"end_date\") >= '2025-03-01') AND (date(\"t1\".\"end_date\") <= '2025-03-31'))) OR ((date(\"t1\".\"start_date\") <= '2025-03-01') AND (date(\"t1\".\"end_date\") >= '2025-03-31'))))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t \nJOIN employees e ON t.employee_id = e.id \nWHERE t.status = 'approved' \nAND e.is_active = true \nAND t.start_date BETWEEN date('now', '+1 month', 'start of month') AND date('now', '+1 month', 'start of month', '+1 month', '-1 day') \nORDER BY t.start_date;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "Which employees have pending time off requests?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((\"t2\".\"is_active\" = 1) AND (\"t1\".\"status\" = 'pending'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE (((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%pending%')) AND (\"t1\".\"status\" = 'pending'))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t\nJOIN employees e ON t.employee_id = e.id\nWHERE t.status != 'approved' \nAND e.is_active = true;",
+    "pydantic_agent_correct": false,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "Who is taking annual leave during the Christmas holidays?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-12-25') AND (date(\"t1\".\"start_date\") <= '2025-12-31')) OR ((date(\"t1\".\"end_date\") >= '2025-12-25') AND (date(\"t1\".\"end_date\") <= '2025-12-31'))) OR ((date(\"t1\".\"start_date\") <= '2025-12-25') AND (date(\"t1\".\"end_date\") >= '2025-12-31')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%annual%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"start_date\") > date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-12-25') AND (date(\"t1\".\"start_date\") <= '2025-12-26')) OR ((date(\"t1\".\"end_date\") >= '2025-12-25') AND (date(\"t1\".\"end_date\") <= '2025-12-26'))) OR ((date(\"t1\".\"start_date\") <= '2025-12-25') AND (date(\"t1\".\"end_date\") >= '2025-12-26')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%annual%'))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t\nJOIN employees e ON t.employee_id = e.id\nWHERE LOWER(t.policy_type) = LOWER('annual leave') \nAND t.status = 'approved' \nAND e.is_active = true \nAND t.start_date <= date('2023-12-25') \nAND t.end_date >= date('2023-12-25');",
+    "pydantic_agent_correct": false,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "List all employees who took birthday leave last month.",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"end_date\") < date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-01-01') AND (date(\"t1\".\"start_date\") <= '2025-01-31')) OR ((date(\"t1\".\"end_date\") >= '2025-01-01') AND (date(\"t1\".\"end_date\") <= '2025-01-31'))) OR ((date(\"t1\".\"start_date\") <= '2025-01-01') AND (date(\"t1\".\"end_date\") >= '2025-01-31')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%birthday%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND (date(\"t1\".\"end_date\") < date('now'))) AND ((((date(\"t1\".\"start_date\") >= '2025-01-01') AND (date(\"t1\".\"start_date\") <= '2025-01-31')) OR ((date(\"t1\".\"end_date\") >= '2025-01-01') AND (date(\"t1\".\"end_date\") <= '2025-01-31'))) OR ((date(\"t1\".\"start_date\") <= '2025-01-01') AND (date(\"t1\".\"end_date\") >= '2025-01-31')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%birthday%'))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t\nJOIN employees e ON t.employee_id = e.id\nWHERE LOWER(t.policy_type) = LOWER('birthday day off')\nAND t.status = 'approved'\nAND e.is_active = true\nAND t.start_date BETWEEN date('now', '-1 month', 'start of month') AND date('now', '-1 month', 'start of month', '+1 month', '-1 day')",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "List all employees who report to Sarah Johnson.",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"reports_to_id\" = \"t2\".\"id\") WHERE ((\"t1\".\"is_active\" AND (\"t2\".\"full_name\" LIKE '%sarah%')) AND (\"t2\".\"full_name\" LIKE '%johnson%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"updated_at\", \"t1\".\"full_name\", \"t1\".\"nationality\", \"t1\".\"department\", \"t1\".\"is_manager\", \"t1\".\"location\", \"t1\".\"linkedin\", \"t1\".\"twitter_x\", \"t1\".\"facebook\", \"t1\".\"email\", \"t1\".\"is_active\", \"t1\".\"reports_to_id\", \"t1\".\"birth_date\", \"t1\".\"client\" FROM \"employees\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"reports_to_id\" = \"t2\".\"id\") WHERE ((\"t1\".\"is_active\" AND (\"t2\".\"full_name\" LIKE '%sarah%')) AND (\"t2\".\"full_name\" LIKE '%johnson%'))",
+    "sql_agent": "SELECT e.full_name, e.department, e.location \nFROM employees e \nJOIN employees AS manager ON e.reports_to = manager.id \nWHERE LOWER(manager.full_name) = LOWER('Sarah Johnson') \nAND e.is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "How many people are out of office today across all departments?",
+    "original_sql": "SELECT \"t1\".\"policy_type\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE (((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%out of office%')) AND (\"t1\".\"status\" = 'approved')) GROUP BY \"t1\".\"policy_type\" ORDER BY COUNT(DISTINCT \"t1\".\"id\") DESC",
+    "pydantic_agent": "SELECT \"t1\".\"policy_type\", COUNT(DISTINCT \"t1\".\"id\") AS \"total\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%out of office%')) GROUP BY \"t1\".\"policy_type\" ORDER BY COUNT(DISTINCT \"t1\".\"id\")",
+    "sql_agent": "SELECT COUNT(*) as out_of_office_count \nFROM time_off t\nJOIN employees e ON t.employee_id = e.id\nWHERE t.status = 'approved' \nAND t.start_date <= date('now') \nAND t.end_date >= date('now') \nAND e.is_active = true;",
+    "pydantic_agent_correct": false,
+    "sql_agent_correct": false,
+    "error": null
+  },
+  {
+    "question": "Which employees from the Design team are currently on leave?",
+    "original_sql": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%leave%')) AND (\"t1\".\"status\" = 'approved')) AND (LOWER(\"t2\".\"department\") LIKE '%design%'))",
+    "pydantic_agent": "SELECT \"t1\".\"id\", \"t1\".\"employee_id\", \"t1\".\"policy_type\", \"t1\".\"start_date\", \"t1\".\"end_date\", \"t1\".\"type\", \"t1\".\"status\", \"t1\".\"created_at\", \"t1\".\"updated_at\", \"t2\".\"id\", \"t2\".\"updated_at\", \"t2\".\"full_name\", \"t2\".\"nationality\", \"t2\".\"department\", \"t2\".\"is_manager\", \"t2\".\"location\", \"t2\".\"linkedin\", \"t2\".\"twitter_x\", \"t2\".\"facebook\", \"t2\".\"email\", \"t2\".\"is_active\", \"t2\".\"reports_to_id\", \"t2\".\"birth_date\", \"t2\".\"client\" FROM \"time_off\" AS \"t1\" INNER JOIN \"employees\" AS \"t2\" ON (\"t1\".\"employee_id\" = \"t2\".\"id\") WHERE ((((((\"t2\".\"is_active\" = 1) AND ((date(\"t1\".\"start_date\") <= date('now')) AND (date(\"t1\".\"end_date\") >= date('now')))) AND ((((date(\"t1\".\"start_date\") >= '2025-02-27') AND (date(\"t1\".\"start_date\") <= '2025-02-27')) OR ((date(\"t1\".\"end_date\") >= '2025-02-27') AND (date(\"t1\".\"end_date\") <= '2025-02-27'))) OR ((date(\"t1\".\"start_date\") <= '2025-02-27') AND (date(\"t1\".\"end_date\") >= '2025-02-27')))) AND (LOWER(\"t1\".\"policy_type\") LIKE '%leave%')) AND (\"t1\".\"status\" = 'approved')) AND (LOWER(\"t2\".\"department\") LIKE '%design%'))",
+    "sql_agent": "SELECT e.full_name, t.start_date, t.end_date \nFROM time_off t\nJOIN employees e ON t.employee_id = e.id\nWHERE LOWER(e.department) = LOWER('Design') \nAND t.status = 'approved' \nAND t.start_date <= date('now') \nAND t.end_date >= date('now') \nAND e.is_active = true;",
+    "pydantic_agent_correct": true,
+    "sql_agent_correct": true,
+    "error": null
+  }
+]
